@@ -1,0 +1,12 @@
+# 로컬 원본 백업 (저장소·배포 제외)
+assets/_original/
+
+# IDE / 에디터 / 미리보기 설정
+.idea/
+.claude/
+
+# 로그
+*.log
+
+# macOS
+.DS_Store
