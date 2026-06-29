@@ -55,6 +55,13 @@ nginx `/var/www/html`에 파일을 그대로 복사해 서빙합니다.
 - 깨져 있던 `og:image` 신규 생성(1200×630) + `og:url`/`twitter:card` 보강, `theme-color`.
 - `robots.txt`, `sitemap.xml`, **Organization JSON-LD** 구조화 데이터 추가.
 
+### 6. 연구데이터 분석 대시보드
+- 폐배터리 재활용 연구데이터를 시각화하는 **인터랙티브 대시보드** 신규 구축.
+- 차트 3종: **추출 효율 추세(선)** · **회수 금속 구성비(도넛)** · **용매별 회수율(막대)**.
+- **Chart.js 로컬 벤더링**(CDN 아님) — "빌드 없이 바로 열림" 정적 제약 준수.
+- **스크롤 진입 시 지연 로드** — 차트 라이브러리를 초기 로딩에서 분리해 첫 화면 성능 유지.
+- 데이터는 `assets/dashboard-data.json` 으로 분리 → **실제 연구데이터 수신 시 파일만 교체**하면 반영(현재는 샘플 데이터, 안내 문구 표시).
+
 ### 버그 수정
 - 모달 `<iframe src="index.html">` → **자가 재귀 로드 제거**(페이지가 자기 자신을 통째로 재로딩하던 문제).
 
@@ -70,16 +77,20 @@ nginx `/var/www/html`에 파일을 그대로 복사해 서빙합니다.
 .
 ├── index.html          # 단일 페이지
 ├── style.css           # 디자인 토큰 + 반응형
-├── script.js           # 영상 동적 로드 · 접근성 모달 · 스크롤 애니메이션
+├── script.js           # 영상 동적 로드 · 접근성 모달 · 스크롤 애니메이션 · 대시보드
 ├── robots.txt
 ├── sitemap.xml
 ├── fav.ico
+├── docs/               # 발표/문서 (배포 제외)
+│   └── 발표자료.md
 └── assets/
     ├── video.mp4, video2.mp4        # 최적화 영상(데스크탑/모바일)
     ├── front/left/right.webp        # 패널 이미지
     ├── poster.webp, poster_mobile.webp
     ├── meta.webp                    # 공유 미리보기(og:image)
-    └── footer.webp
+    ├── footer.webp
+    ├── chart.min.js                 # Chart.js (로컬 벤더링)
+    └── dashboard-data.json          # 대시보드 데이터(실데이터 수신 시 교체)
 ```
 
 ## 배포 (Cyberduck → nginx)
@@ -99,8 +110,10 @@ nginx `/var/www/html`에 파일을 그대로 복사해 서빙합니다.
 ---
 
 ## 향후 (예정)
-- **연구데이터 분석 / 대시보드** 섹션 (회사정보 섹션 하단에 자리 확보됨).
-- 검토 대상: 국·영문, 언론보도/연혁, 자체 문의 백엔드, HTTPS(certbot)·nginx 캐시/gzip.
+- **실제 연구데이터 분석** — 데이터 수신 후 Python(EDA·예측 모델) → `dashboard-data.json` 교체.
+- 검토 대상: 국·영문, 수상/언론보도/연혁 섹션, 자체 문의 백엔드, HTTPS(certbot)·nginx 캐시/gzip.
+
+> 📑 발표용 정리는 [`docs/발표자료.md`](docs/발표자료.md) 참고.
 
 ---
 
