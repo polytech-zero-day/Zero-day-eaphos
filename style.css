@@ -260,6 +260,102 @@ main { width: 100%; }
 }
 
 /* =================================================================
+ * 수상 · 언론보도
+ * ================================================================= */
+.awards-section {
+    width: 100%;
+    padding: var(--s-6) var(--s-3);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+.awards-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+}
+.subhead {
+    margin: var(--s-4) 0 var(--s-2);
+    font-size: var(--t-md);
+    font-weight: 700;
+    color: var(--ink);
+}
+.subhead:first-of-type { margin-top: var(--s-3); }
+
+.award-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-2);
+}
+.award-item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-2) var(--s-3);
+    background: var(--brand-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+}
+.award-year {
+    flex: 0 0 auto;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: var(--brand-ink);
+    font-size: var(--t-md);
+}
+.award-name {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.press-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-2);
+}
+.press-item a {
+    display: grid;
+    grid-template-columns: 7rem 1fr auto;
+    align-items: baseline;
+    gap: var(--s-2);
+    padding: var(--s-2) var(--s-3);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    transition: border-color .25s ease, background-color .25s ease;
+}
+.press-source {
+    font-weight: 700;
+    color: var(--brand-ink);
+    font-size: var(--t-sm);
+}
+.press-title { color: var(--ink); }
+.press-date {
+    color: var(--ink-muted);
+    font-size: var(--t-sm);
+    white-space: nowrap;
+}
+@media (hover: hover) {
+    .press-item a:hover {
+        border-color: var(--brand);
+        background: var(--brand-soft);
+    }
+}
+
+@media (max-width: 768px) {
+    .awards-section { padding: var(--s-5) var(--s-3); }
+    .award-list { grid-template-columns: 1fr; }
+    .press-item a {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+}
+
+/* =================================================================
  * 연구데이터 분석 대시보드
  * ================================================================= */
 .dashboard-section {
