@@ -258,6 +258,51 @@ main { width: 100%; }
 }
 
 /* =================================================================
+ * 연구데이터 분석 대시보드
+ * ================================================================= */
+.dashboard-section {
+    width: 100%;
+    padding: var(--s-6) var(--s-3);
+}
+.dashboard-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+}
+.dashboard-note {
+    margin: calc(var(--s-2) * -1) 0 var(--s-4);
+    font-size: var(--t-sm);
+    color: var(--ink-muted);
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3);
+}
+.chart-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: var(--s-3);
+}
+.chart-card--wide { grid-column: 1 / -1; }
+.chart-title {
+    margin: 0 0 var(--s-2);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: var(--t-md);
+}
+.chart-box {
+    position: relative;
+    height: 280px;
+}
+.chart-card--wide .chart-box { height: 320px; }
+
+@media (max-width: 768px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .chart-box { height: 260px; }
+}
+
+/* =================================================================
  * 문의 CTA
  * ================================================================= */
 .action-section {

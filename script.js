@@ -105,4 +105,108 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.15 });
         revealEls.forEach((el) => io.observe(el));
     }
+
+    /* ---------------------------------------------------------------
+     * 4) 연구데이터 분석 대시보드
+     *    - 초기 로딩 가볍게: 대시보드가 화면에 가까워질 때 Chart.js 지연 로드
+     *    - 데이터는 assets/dashboard-data.json (실데이터 수신 시 이 파일만 교체)
+     * ------------------------------------------------------------- */
+    const dashboard = document.querySelector('.dashboard-section');
+    if (dashboard) {
+        const palette = ['#2b7aa8', '#54b0d6', '#1d5c80', '#8fd0e8', '#9aa7b0'];
+
+        const loadScript = (src) => new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = src;
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+        });
+
+        const renderDashboard = (d) => {
+            Chart.defaults.color = '#9aa7b0';
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            const grid = { color: 'rgba(255,255,255,.08)' };
+
+            // 샘플 데이터 안내
+            const note = document.getElementById('dashboard-note');
+            if (note && d.meta && d.meta.isSample) {
+                note.textContent = '※ ' + (d.meta.note || '샘플(예시) 데이터입니다.');
+                note.hidden = false;
+            }
+            const setTitle = (id, t) => { const e = document.getElementById(id); if (e && t) e.textContent = t; };
+
+            // 1) 추출 효율 추세 (line)
+            const trend = d.extractionTrend;
+            if (trend) {
+                setTitle('chart-trend-title', trend.title);
+                new Chart(document.getElementById('chart-trend'), {
+                    type: 'line',
+                    data: {
+                        labels: trend.labels,
+                        datasets: trend.series.map((s, i) => ({
+                            label: s.label,
+                            data: s.data,
+                            borderColor: palette[i % palette.length],
+                            backgroundColor: palette[i % palette.length],
+                            tension: 0.35,
+                            borderWidth: 2,
+                            pointRadius: 2
+                        }))
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } },
+                        scales: { y: { grid, ticks: { callback: (v) => v + (trend.unit || '') } }, x: { grid } }
+                    }
+                });
+            }
+
+            // 2) 회수 금속 구성비 (doughnut)
+            const comp = d.metalComposition;
+            if (comp) {
+                setTitle('chart-composition-title', comp.title);
+                new Chart(document.getElementById('chart-composition'), {
+                    type: 'doughnut',
+                    data: { labels: comp.labels, datasets: [{ data: comp.data, backgroundColor: palette, borderColor: '#12161a', borderWidth: 2 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                });
+            }
+
+            // 3) 용매별 회수율 (bar)
+            const solv = d.solventRecovery;
+            if (solv) {
+                setTitle('chart-solvent-title', solv.title);
+                new Chart(document.getElementById('chart-solvent'), {
+                    type: 'bar',
+                    data: { labels: solv.labels, datasets: [{ label: '회수율(' + (solv.unit || '%') + ')', data: solv.data, backgroundColor: palette[0], borderRadius: 6 }] },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { grid, ticks: { callback: (v) => v + (solv.unit || '') } }, x: { grid } }
+                    }
+                });
+            }
+        };
+
+        const initDashboard = async () => {
+            try {
+                await loadScript('assets/chart.min.js');
+                const res = await fetch('assets/dashboard-data.json', { cache: 'no-cache' });
+                renderDashboard(await res.json());
+            } catch (e) {
+                const note = document.getElementById('dashboard-note');
+                if (note) { note.textContent = '대시보드 데이터를 불러오지 못했습니다.'; note.hidden = false; }
+            }
+        };
+
+        if ('IntersectionObserver' in window) {
+            const dio = new IntersectionObserver((entries, obs) => {
+                if (entries.some((en) => en.isIntersecting)) { obs.disconnect(); initDashboard(); }
+            }, { rootMargin: '200px' });
+            dio.observe(dashboard);
+        } else {
+            initDashboard();
+        }
+    }
 });

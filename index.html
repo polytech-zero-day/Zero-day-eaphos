@@ -109,7 +109,30 @@
                         </div>
                     </dl>
                     <!-- TODO: 대표자/팩스/약도(지도) 등 발주자 확인 후 보강 -->
-                    <!-- TODO(데이터 분석): 연구데이터 분석 결과/대시보드 섹션 추후 이 아래에 추가 -->
+                </div>
+            </section>
+
+            <!-- 연구데이터 분석 대시보드 (Chart.js, 데이터는 assets/dashboard-data.json) -->
+            <section class="dashboard-section" aria-labelledby="dashboard-heading" data-reveal>
+                <div class="dashboard-inner">
+                    <h2 id="dashboard-heading" class="section-title">연구데이터 분석 <span class="section-title-en">Data Insights</span></h2>
+                    <p class="company-lead">폐배터리 재활용 연구데이터를 분석해 추출 효율·회수 구성·용매 성능을 시각화합니다.</p>
+                    <p class="dashboard-note" id="dashboard-note" hidden></p>
+
+                    <div class="dashboard-grid">
+                        <figure class="chart-card chart-card--wide">
+                            <figcaption class="chart-title" id="chart-trend-title">월별 추출 효율 추세</figcaption>
+                            <div class="chart-box"><canvas id="chart-trend" role="img" aria-label="월별 희유금속 추출 효율 추세 선형 차트"></canvas></div>
+                        </figure>
+                        <figure class="chart-card">
+                            <figcaption class="chart-title" id="chart-composition-title">회수 금속 구성비</figcaption>
+                            <div class="chart-box"><canvas id="chart-composition" role="img" aria-label="회수 금속 구성비 도넛 차트"></canvas></div>
+                        </figure>
+                        <figure class="chart-card">
+                            <figcaption class="chart-title" id="chart-solvent-title">용매별 회수율</figcaption>
+                            <div class="chart-box"><canvas id="chart-solvent" role="img" aria-label="용매별 평균 회수율 막대 차트"></canvas></div>
+                        </figure>
+                    </div>
                 </div>
             </section>
 
