@@ -73,15 +73,6 @@
                 </div>
             </section>
 
-            <!-- 중단 패널 이미지 섹션 -->
-            <section class="panel-section" aria-label="취급 금속 분류 안내">
-                <div class="panel-grid">
-                    <div class="panel-item"><img src="assets/left.webp" alt="알칼리 금속 분류 및 주요 응용 산업 안내" width="1400" height="1750" loading="lazy" decoding="async"></div>
-                    <div class="panel-item"><img src="assets/front.webp" alt="전이금속 분류 및 주요 응용 산업 안내" width="1800" height="1319" loading="lazy" decoding="async"></div>
-                    <div class="panel-item"><img src="assets/right.webp" alt="후전이금속 분류 및 주요 응용 산업 안내" width="1400" height="1750" loading="lazy" decoding="async"></div>
-                </div>
-            </section>
-
             <!-- 전략 소재 분야 섹션 -->
             <section class="materials-section" aria-labelledby="materials-heading">
                 <div class="materials-inner" data-reveal>
@@ -233,21 +224,21 @@
             <section class="dashboard-section" aria-labelledby="dashboard-heading" data-reveal>
                 <div class="dashboard-inner">
                     <h2 id="dashboard-heading" class="section-title">연구데이터 분석 <span class="section-title-en">Data Insights</span></h2>
-                    <p class="company-lead">폐배터리 재활용 연구데이터를 분석해 추출 효율·회수 구성·용매 성능을 시각화합니다.</p>
+                    <p class="company-lead">272 프로젝트 실험 데이터를 분석해 <strong>공정 제어 안정성·차수별 도징 최적화·실제 수율</strong>을 시각화합니다.</p>
                     <p class="dashboard-note" id="dashboard-note" hidden></p>
 
                     <div class="dashboard-grid">
                         <figure class="chart-card chart-card--wide">
-                            <figcaption class="chart-title" id="chart-trend-title">월별 추출 효율 추세</figcaption>
-                            <div class="chart-box"><canvas id="chart-trend" role="img" aria-label="월별 희유금속 추출 효율 추세 선형 차트"></canvas></div>
+                            <figcaption class="chart-title" id="chart-trend-title">공정 제어 프로파일</figcaption>
+                            <div class="chart-box"><canvas id="chart-trend" role="img" aria-label="시간별 도징량과 내부온도 공정 프로파일 선형 차트"></canvas></div>
                         </figure>
                         <figure class="chart-card">
-                            <figcaption class="chart-title" id="chart-composition-title">회수 금속 구성비</figcaption>
-                            <div class="chart-box"><canvas id="chart-composition" role="img" aria-label="회수 금속 구성비 도넛 차트"></canvas></div>
+                            <figcaption class="chart-title" id="chart-composition-title">차수별 평균 도징량</figcaption>
+                            <div class="chart-box"><canvas id="chart-composition" role="img" aria-label="차수별 평균 펌프 도징량 막대 차트"></canvas></div>
                         </figure>
                         <figure class="chart-card">
-                            <figcaption class="chart-title" id="chart-solvent-title">용매별 회수율</figcaption>
-                            <div class="chart-box"><canvas id="chart-solvent" role="img" aria-label="용매별 평균 회수율 막대 차트"></canvas></div>
+                            <figcaption class="chart-title" id="chart-solvent-title">차수별 실제 수율</figcaption>
+                            <div class="chart-box"><canvas id="chart-solvent" role="img" aria-label="차수별 실제 수율 막대 차트"></canvas></div>
                         </figure>
                     </div>
                 </div>

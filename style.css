@@ -127,45 +127,6 @@ main { width: 100%; }
 }
 .video-tagline strong { font-weight: 600; }
 
-/* =================================================================
- * 패널 이미지 그리드
- * ================================================================= */
-.panel-section { width: 100%; }
-
-.panel-grid {
-    display: flex;
-    width: 100%;
-    height: min(33vw, 520px);   /* 와이드스크린 상한 */
-    overflow: hidden;
-    gap: 2px;
-}
-
-.panel-item {
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-}
-.panel-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(5, 5, 5, .35) 0%, rgba(5, 5, 5, .08) 100%);
-    pointer-events: none;
-}
-.panel-item:nth-child(1) { flex: .800; }
-.panel-item:nth-child(2) { flex: 1.365; }
-.panel-item:nth-child(3) { flex: .800; }
-
-.panel-item img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform .5s ease;
-}
-@media (hover: hover) {
-    .panel-item:hover img { transform: scale(1.03); }
-}
 
 /* =================================================================
  * 전략 소재 분야
@@ -637,25 +598,7 @@ main { width: 100%; }
     .action-section  { padding: var(--s-5) var(--s-3); }
 }
 
-/* 모바일/태블릿 세로: 패널 3장 세로 스택 (이미지 늘어짐 버그 수정) */
 @media (max-width: 768px) {
-    .panel-grid {
-        flex-direction: column;
-        height: auto;
-        gap: 2px;
-    }
-    .panel-item {
-        height: auto;
-        flex: none !important;
-    }
-    /* 텍스트 인포그래픽이라 크롭하지 않고 각 원본 비율로 전체 표시 */
-    .panel-item img {
-        height: auto;
-        object-fit: contain;
-    }
-    /* 모바일에선 그라데이션 오버레이 제거(가독성) */
-    .panel-item::after { display: none; }
-
     .hero-video { aspect-ratio: 1 / 1; }   /* 모바일 영상(정사각) 공간 예약 */
     .video-scrim { padding: var(--s-4) var(--s-2) var(--s-2); }
 

@@ -129,62 +129,68 @@ document.addEventListener('DOMContentLoaded', () => {
             Chart.defaults.font.family = "'Inter', sans-serif";
             const grid = { color: 'rgba(255,255,255,.08)' };
 
-            // 샘플 데이터 안내
+            // 데이터 출처 안내
             const note = document.getElementById('dashboard-note');
-            if (note && d.meta && d.meta.isSample) {
-                note.textContent = '※ ' + (d.meta.note || '샘플(예시) 데이터입니다.');
+            if (note && d.meta && d.meta.note) {
+                note.textContent = '※ ' + d.meta.note;
                 note.hidden = false;
             }
             const setTitle = (id, t) => { const e = document.getElementById(id); if (e && t) e.textContent = t; };
 
-            // 1) 추출 효율 추세 (line)
-            const trend = d.extractionTrend;
-            if (trend) {
-                setTitle('chart-trend-title', trend.title);
+            // 1) 공정 제어 프로파일 (시간별 도징량 + 내부온도, 이중 축)
+            const prof = d.profile;
+            if (prof) {
+                setTitle('chart-trend-title', prof.title);
                 new Chart(document.getElementById('chart-trend'), {
                     type: 'line',
                     data: {
-                        labels: trend.labels,
-                        datasets: trend.series.map((s, i) => ({
-                            label: s.label,
-                            data: s.data,
-                            borderColor: palette[i % palette.length],
-                            backgroundColor: palette[i % palette.length],
-                            tension: 0.35,
-                            borderWidth: 2,
-                            pointRadius: 2
-                        }))
+                        labels: prof.labels,
+                        datasets: [
+                            { label: '펌프 도징량 (ml/min)', data: prof.dosing, yAxisID: 'y',
+                              borderColor: palette[0], backgroundColor: palette[0], tension: 0.3, borderWidth: 2, pointRadius: 0 },
+                            { label: '내부온도 (℃)', data: prof.temp, yAxisID: 'y1',
+                              borderColor: palette[3], backgroundColor: palette[3], tension: 0.3, borderWidth: 2, pointRadius: 0, borderDash: [4, 3] }
+                        ]
                     },
                     options: {
                         responsive: true, maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
                         plugins: { legend: { position: 'bottom' } },
-                        scales: { y: { grid, ticks: { callback: (v) => v + (trend.unit || '') } }, x: { grid } }
+                        scales: {
+                            x: { grid, title: { display: true, text: '경과 시간 (min)' } },
+                            y: { position: 'left', grid, title: { display: true, text: 'ml/min' } },
+                            y1: { position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: '℃' } }
+                        }
                     }
                 });
             }
 
-            // 2) 회수 금속 구성비 (doughnut)
-            const comp = d.metalComposition;
-            if (comp) {
-                setTitle('chart-composition-title', comp.title);
+            // 2) 차수별 평균 도징량 (bar)
+            const dbr = d.dosingByRun;
+            if (dbr) {
+                setTitle('chart-composition-title', dbr.title);
                 new Chart(document.getElementById('chart-composition'), {
-                    type: 'doughnut',
-                    data: { labels: comp.labels, datasets: [{ data: comp.data, backgroundColor: palette, borderColor: '#12161a', borderWidth: 2 }] },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-                });
-            }
-
-            // 3) 용매별 회수율 (bar)
-            const solv = d.solventRecovery;
-            if (solv) {
-                setTitle('chart-solvent-title', solv.title);
-                new Chart(document.getElementById('chart-solvent'), {
                     type: 'bar',
-                    data: { labels: solv.labels, datasets: [{ label: '회수율(' + (solv.unit || '%') + ')', data: solv.data, backgroundColor: palette[0], borderRadius: 6 }] },
+                    data: { labels: dbr.labels, datasets: [{ label: '평균 도징량(' + (dbr.unit || '') + ')', data: dbr.data, backgroundColor: palette[0], borderRadius: 6 }] },
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         plugins: { legend: { display: false } },
-                        scales: { y: { grid, ticks: { callback: (v) => v + (solv.unit || '') } }, x: { grid } }
+                        scales: { y: { grid, ticks: { callback: (v) => v + ' ' + (dbr.unit || '') } }, x: { grid } }
+                    }
+                });
+            }
+
+            // 3) 차수별 실제 수율 (bar)
+            const ybr = d.yieldByRun;
+            if (ybr) {
+                setTitle('chart-solvent-title', ybr.title);
+                new Chart(document.getElementById('chart-solvent'), {
+                    type: 'bar',
+                    data: { labels: ybr.labels, datasets: [{ label: '실제 수율(' + (ybr.unit || '%') + ')', data: ybr.data, backgroundColor: palette[1], borderRadius: 6 }] },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { grid, ticks: { callback: (v) => v + (ybr.unit || '') } }, x: { grid } }
                     }
                 });
             }
