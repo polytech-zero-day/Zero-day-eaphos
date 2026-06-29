@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;600&display=swap');
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 비디오 섹션 */
+.video-section {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.hero-video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: cover;
+}
+
+.mobile-video {
+    display: none;
+}
+
+/* 메인 레이아웃 반응형 그리드 */
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 상단 메인 히어로 카드 (right.jpg 내용) */
+.hero-banner-card {
+    background: linear-gradient(135deg, #163345 0%, #0b1a24 100%);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 16px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.brand-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #00ffcc;
+    margin-bottom: 20px;
+}
+
+.hero-banner-card h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.banner-subtitle {
+    font-size: 1.2rem;
+    color: #a0aec0;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.banner-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+}
+
+.banner-desc strong {
+    color: #00ffcc;
+}
+
+/* 금속 카드 공통 그리드 구성 */
+.metal-grid, .rare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.rare-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.metal-card {
+    background-color: #111111;
+    border: 1px solid #222222;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.metal-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ffcc;
+}
+
+.metal-card.color-variant:hover {
+    border-color: #3b82f6; /* 준금속/희토류 파란색 포인트 */
+}
+
+/* 카드 헤더 */
+.card-header h3 {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+    font-family: 'Outfit', sans-serif;
+    color: #00ffcc;
+}
+
+.metal-card.color-variant .card-header h3 {
+    color: #3b82f6;
+}
+
+.card-header span {
+    font-size: 0.95rem;
+    color: #718096;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+    margin: 0;
+    min-height: 50px;
+}
+
+/* 대표원소 배지 스타일 */
+.element-box h4, .app-box h4 {
+    font-size: 0.85rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+    border-bottom: 1px solid #222;
+    padding-bottom: 6px;
+}
+
+.badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.element-badge {
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.element-badge strong {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+/* 주요 애플리케이션 리스트 */
+.app-box ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-box li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #cbd5e1;
+    list-style-type: square;
+}
+
+.app-box li strong {
+    color: #00ffcc;
+    font-weight: 600;
+}
+
+.metal-card.color-variant .app-box li strong {
+    color: #3b82f6;
+}
+
+/* 하단 버튼 및 푸터 */
+.action-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.click-btn {
+    padding: 20px 60px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    background-color: #00ffcc;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+    transition: all 0.3s ease;
+}
+
+.click-btn:hover {
+    background-color: #00d4aa;
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
+}
+
+.footer-section {
+    width: 100%;
+    padding: 60px 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.footer-logo {
+    max-width: 500px;
+    width: 90%;
+    height: auto;
+    opacity: 0.8;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    width: 90%;
+    height: 85%;
+    max-width: 1000px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #333;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#qa-iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* ★ 핵심: 반응형 미디어 쿼리 (태블릿, 모바일) */
+@media (max-width: 1024px) {
+    .metal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-video {
+        display: none;
+    }
+
+    .mobile-video {
+        display: block;
+    }
+
+    .metal-grid, .rare-grid {
+        grid-template-columns: 1fr; /* 모바일에서는 무조건 1열로 세로 정렬 */
+    }
+
+    .hero-banner-card {
+        padding: 40px 20px;
+    }
+
+    .hero-banner-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .click-btn {
+        width: 100%;
+        max-width: 340px;
+        font-size: 1.8rem;
+    }
+}
