@@ -319,6 +319,9 @@ main { width: 100%; }
 .awards-section {
     width: 100%;
     padding: var(--s-6) var(--s-3);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 }
 .awards-inner {
     max-width: var(--content-max);
@@ -412,9 +415,6 @@ main { width: 100%; }
 .rd-section {
     width: 100%;
     padding: var(--s-6) var(--s-3);
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
 }
 .rd-inner {
     max-width: var(--content-max);
@@ -467,6 +467,12 @@ main { width: 100%; }
         box-shadow: none;
     }
 }
+/* R&D 패널 버튼 가운데 정렬 */
+#dash-button {
+    display: block;
+    width: fit-content;
+    margin: var(--s-2) auto 0;
+}
 
 /* =================================================================
  * 데이터 모달 (다크 패널 + 차트)
@@ -486,13 +492,26 @@ main { width: 100%; }
     max-height: 90vh;
     overflow-y: auto;
 }
-.dash-body {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, .18) transparent;
-}
-.dash-body::-webkit-scrollbar { width: 8px; }
-.dash-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .18); border-radius: 8px; }
+/* 스크롤바 숨김 (스크롤은 유지) */
+.dash-body { scrollbar-width: none; -ms-overflow-style: none; }
+.dash-body::-webkit-scrollbar { display: none; }
 .dash-body > .section-title { text-align: center; }
+
+/* 모달 하단 각주 */
+.dash-foot {
+    margin-top: var(--s-2);
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--line);
+}
+.dash-note {
+    margin: 0;
+    font-size: .8rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    opacity: .75;
+    text-align: center;
+}
+.dash-note + .dash-note { margin-top: 4px; }
 .dashboard-lead {
     margin: 0 auto var(--s-2);
     max-width: 60ch;
@@ -550,6 +569,8 @@ main { width: 100%; }
 .action-section {
     padding: var(--s-6) var(--s-3);
     text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
 }
 .cta-btn {
     min-height: 44px;
