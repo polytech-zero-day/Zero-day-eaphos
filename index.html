@@ -24,10 +24,14 @@
 
     <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
 
-    <!-- 폰트: @import 대신 preconnect + link (렌더 블로킹 완화) -->
+    <!-- 폰트: preconnect + 비차단 로드(렌더 블로킹 제거). 미지원 시 noscript로 폴백 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;600&display=swap"
+          media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;600&display=swap">
+    </noscript>
     <link rel="stylesheet" href="style.css">
 
     <!-- 구조화 데이터 (Organization) -->
@@ -72,9 +76,9 @@
             <!-- 중단 패널 이미지 섹션 -->
             <section class="panel-section" aria-label="취급 금속 분류 안내">
                 <div class="panel-grid">
-                    <div class="panel-item"><img src="assets/left.webp" alt="알칼리 금속 분류 및 주요 응용 산업 안내" loading="lazy" decoding="async"></div>
-                    <div class="panel-item"><img src="assets/front.webp" alt="전이금속 분류 및 주요 응용 산업 안내" loading="lazy" decoding="async"></div>
-                    <div class="panel-item"><img src="assets/right.webp" alt="후전이금속 분류 및 주요 응용 산업 안내" loading="lazy" decoding="async"></div>
+                    <div class="panel-item"><img src="assets/left.webp" alt="알칼리 금속 분류 및 주요 응용 산업 안내" width="1400" height="1750" loading="lazy" decoding="async"></div>
+                    <div class="panel-item"><img src="assets/front.webp" alt="전이금속 분류 및 주요 응용 산업 안내" width="1800" height="1319" loading="lazy" decoding="async"></div>
+                    <div class="panel-item"><img src="assets/right.webp" alt="후전이금속 분류 및 주요 응용 산업 안내" width="1400" height="1750" loading="lazy" decoding="async"></div>
                 </div>
             </section>
 

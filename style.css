@@ -7,9 +7,10 @@
     --bg:           #0a0c0e;
     --surface:      #12161a;
     --ink:          #f4f7f9;
-    --ink-muted:    #9aa7b0;
+    --ink-muted:    #b2bdc6;            /* 대비 기준(WCAG AA) 충족하도록 상향 */
     --brand:        #2b7aa8;            /* 브랜드 스틸블루 (#225f82 기반, 약간 밝힘) */
     --brand-strong: #1d5c80;
+    --brand-ink:    #6cbfe6;            /* 어두운 배경 위 텍스트/링크용 밝은 톤 */
     --brand-soft:   rgba(43, 122, 168, .16);
     --line:         rgba(255, 255, 255, .08);
 
@@ -98,6 +99,7 @@ main { width: 100%; }
 .hero-video {
     width: 100%;
     height: auto;
+    aspect-ratio: 1920 / 528;   /* 로드 전 공간 예약 → 레이아웃 이동(CLS) 방지 */
     max-height: 80vh;
     object-fit: cover;
     display: block;
@@ -188,7 +190,7 @@ main { width: 100%; }
 .section-title-en {
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-ink);
     margin-left: .4em;
     font-size: .7em;
     letter-spacing: .04em;
@@ -250,7 +252,7 @@ main { width: 100%; }
     font-size: var(--t-md);
 }
 .contact-row a {
-    color: var(--brand);
+    color: var(--brand-ink);
     text-decoration: none;
 }
 @media (hover: hover) {
@@ -436,6 +438,7 @@ main { width: 100%; }
     /* 모바일에선 그라데이션 오버레이 제거(가독성) */
     .panel-item::after { display: none; }
 
+    .hero-video { aspect-ratio: 1 / 1; }   /* 모바일 영상(정사각) 공간 예약 */
     .video-scrim { padding: var(--s-4) var(--s-2) var(--s-2); }
 
     .contact-row {
