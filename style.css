@@ -40,6 +40,8 @@ body, html {
     color: var(--ink);
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
+    word-break: keep-all;       /* 한글 단어가 줄바꿈에서 쪼개지지 않도록 */
+    overflow-wrap: break-word;  /* 아주 긴 토큰만 강제 줄바꿈 */
 }
 
 /* 스크린리더 전용 (시각적으로 숨김) */
