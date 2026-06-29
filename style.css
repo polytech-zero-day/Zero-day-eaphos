@@ -238,6 +238,7 @@ main { width: 100%; }
     font-size: var(--t-lg);
     font-weight: 700;
     letter-spacing: -.02em;
+    text-wrap: balance;
 }
 .section-title-en {
     font-family: 'Outfit', sans-serif;
@@ -252,7 +253,8 @@ main { width: 100%; }
     font-size: var(--t-md);
     line-height: 1.7;
     color: var(--ink-muted);
-    max-width: 60ch;
+    max-width: 72ch;
+    text-wrap: pretty;
 }
 .company-lead strong { color: var(--ink); font-weight: 700; }
 
@@ -317,9 +319,6 @@ main { width: 100%; }
 .awards-section {
     width: 100%;
     padding: var(--s-6) var(--s-3);
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
 }
 .awards-inner {
     max-width: var(--content-max);
@@ -413,6 +412,9 @@ main { width: 100%; }
 .rd-section {
     width: 100%;
     padding: var(--s-6) var(--s-3);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 }
 .rd-inner {
     max-width: var(--content-max);
@@ -447,16 +449,18 @@ main { width: 100%; }
     color: var(--ink-muted);
 }
 
-/* 2차 CTA (고스트 버튼) */
-.cta-btn--ghost {
+/* 2차 CTA (고스트 버튼) — .cta-btn 뒤에 정의돼도 이기도록 특이도 ↑ */
+.cta-btn.cta-btn--ghost {
     background: transparent;
     color: var(--brand-ink);
     border: 1.5px solid var(--brand);
     box-shadow: none;
     font-size: var(--t-md);
+    font-weight: 600;
+    letter-spacing: 0;
 }
 @media (hover: hover) {
-    .cta-btn--ghost:hover {
+    .cta-btn.cta-btn--ghost:hover {
         background: var(--brand-soft);
         color: var(--ink);
         transform: translateY(-3px);
@@ -467,33 +471,47 @@ main { width: 100%; }
 /* =================================================================
  * 데이터 모달 (다크 패널 + 차트)
  * ================================================================= */
-.modal-content--panel {
-    background: var(--bg);
+.modal-content.modal-content--panel {
+    background: var(--surface);
     color: var(--ink);
     width: 92%;
     max-width: 760px;
     height: auto;
     max-height: 90vh;
+    border: 1px solid var(--line);
 }
-.modal-content--panel .close-btn { color: var(--ink); }
+.modal-content.modal-content--panel .close-btn { color: var(--ink); }
 .dash-body {
     padding: var(--s-4) var(--s-3);
     max-height: 90vh;
     overflow-y: auto;
 }
+.dash-body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .18) transparent;
+}
+.dash-body::-webkit-scrollbar { width: 8px; }
+.dash-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .18); border-radius: 8px; }
+.dash-body > .section-title { text-align: center; }
 .dashboard-lead {
-    margin: 0 0 var(--s-2);
+    margin: 0 auto var(--s-2);
+    max-width: 60ch;
     font-size: var(--t-sm);
     line-height: 1.6;
     color: var(--ink-muted);
+    text-align: center;
+    text-wrap: pretty;
 }
 .dashboard-note {
-    margin: 0 0 var(--s-3);
+    margin: 0 auto var(--s-4);
+    max-width: 60ch;
     font-size: var(--t-sm);
     color: var(--ink-muted);
+    text-align: center;
+    text-wrap: pretty;
 }
 .chart-card {
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--line);
     border-radius: var(--r-md);
     padding: var(--s-3);
@@ -504,16 +522,20 @@ main { width: 100%; }
     font-weight: 700;
     color: var(--ink);
     font-size: var(--t-md);
+    text-align: center;
 }
 .chart-box {
     position: relative;
     height: 300px;
 }
 .chart-caption {
-    margin: var(--s-2) 0 0;
+    margin: var(--s-2) auto 0;
+    max-width: 56ch;
     font-size: var(--t-sm);
     color: var(--ink-muted);
     line-height: 1.6;
+    text-align: center;
+    text-wrap: pretty;
 }
 
 @media (max-width: 768px) {
