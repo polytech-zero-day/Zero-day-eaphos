@@ -168,6 +168,95 @@ main { width: 100%; }
 }
 
 /* =================================================================
+ * 전략 소재 분야
+ * ================================================================= */
+.materials-section {
+    width: 100%;
+    padding: var(--s-6) var(--s-3);
+}
+.materials-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3);
+}
+.material-card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding: var(--s-3);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    transition: border-color .25s ease, transform .25s ease;
+}
+.material-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-2);
+    padding-bottom: var(--s-1);
+    border-bottom: 1px solid var(--line);
+}
+.material-card h3 {
+    margin: 0;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: var(--t-md);
+    color: var(--brand-ink);
+}
+.material-card-head span {
+    flex: 0 0 auto;
+    color: var(--ink-muted);
+    font-size: var(--t-sm);
+}
+.material-card p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: var(--t-sm);
+    line-height: 1.65;
+}
+.material-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.material-tags li {
+    min-width: 4.8rem;
+    padding: .65rem .75rem;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    color: var(--ink-muted);
+    text-align: center;
+    font-size: .88rem;
+}
+.material-tags strong {
+    display: block;
+    margin-bottom: .15rem;
+    color: var(--ink);
+    font-size: 1rem;
+}
+.material-use {
+    margin-top: auto !important;
+    padding-top: var(--s-2);
+    border-top: 1px solid var(--line);
+    color: var(--ink) !important;
+}
+@media (hover: hover) {
+    .material-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--brand);
+    }
+}
+
+/* =================================================================
  * 회사 정보 / 연락처 섹션
  * ================================================================= */
 .company-section {
@@ -506,11 +595,44 @@ main { width: 100%; }
 }
 
 /* =================================================================
+ * 맨 위로 이동 버튼
+ * ================================================================= */
+.scroll-top-btn {
+    position: fixed;
+    right: max(var(--s-3), env(safe-area-inset-right));
+    bottom: max(var(--s-3), env(safe-area-inset-bottom));
+    z-index: 900;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .25s ease, visibility .25s ease, transform .25s ease, background-color .25s ease;
+}
+.scroll-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+@media (hover: hover) {
+    .scroll-top-btn:hover { background: var(--brand-strong); }
+}
+
+/* =================================================================
  * 반응형 — 모바일 ≤480 / 태블릿 481–1024 / 데스크탑 1025–1439 / 와이드 ≥1440
  * ================================================================= */
 
 /* 태블릿 이하 */
 @media (max-width: 1024px) {
+    .materials-section { padding: var(--s-5) var(--s-3); }
     .company-section { padding: var(--s-5) var(--s-3); }
     .action-section  { padding: var(--s-5) var(--s-3); }
 }
@@ -536,6 +658,12 @@ main { width: 100%; }
 
     .hero-video { aspect-ratio: 1 / 1; }   /* 모바일 영상(정사각) 공간 예약 */
     .video-scrim { padding: var(--s-4) var(--s-2) var(--s-2); }
+
+    .materials-grid { grid-template-columns: 1fr; }
+    .material-card-head {
+        flex-direction: column;
+        gap: 2px;
+    }
 
     .contact-row {
         flex-direction: column;

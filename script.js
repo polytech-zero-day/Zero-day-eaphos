@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qaModal = document.getElementById('qa-modal');
     const qaIframe = document.getElementById('qa-iframe');
     const closeBtn = qaModal ? qaModal.querySelector('.close-btn') : null;
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
     const FORM_URL = 'https://forms.office.com/r/z4nQpL05h6';
 
     let lastFocused = null;
@@ -208,5 +209,20 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             initDashboard();
         }
+    }
+
+    /* ---------------------------------------------------------------
+     * 5) 맨 위로 이동 버튼
+     * ------------------------------------------------------------- */
+    if (scrollTopBtn) {
+        const syncScrollTopButton = () => {
+            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 360);
+        };
+
+        window.addEventListener('scroll', syncScrollTopButton, { passive: true });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+        syncScrollTopButton();
     }
 });
