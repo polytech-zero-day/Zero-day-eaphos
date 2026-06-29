@@ -410,11 +410,54 @@ main { width: 100%; }
 }
 
 /* =================================================================
+ * 연혁 타임라인
+ * ================================================================= */
+.history-section {
+    width: 100%;
+    padding: var(--s-6) var(--s-3);
+}
+.history-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+}
+.timeline {
+    list-style: none;
+    margin: var(--s-3) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-2);
+}
+.timeline-item {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: var(--s-2);
+    align-items: baseline;
+    padding: var(--s-2) var(--s-3);
+    background: var(--brand-soft);
+    border-left: 3px solid var(--brand);
+    border-radius: var(--r-sm);
+}
+.timeline-year {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: var(--brand-ink);
+}
+.timeline-desc { margin: 0; color: var(--ink); }
+
+@media (max-width: 768px) {
+    .history-section { padding: var(--s-5) var(--s-3); }
+    .timeline-item { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* =================================================================
  * 데이터 기반 R&D 소개 패널
  * ================================================================= */
 .rd-section {
     width: 100%;
     padding: var(--s-6) var(--s-3);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 }
 .rd-inner {
     max-width: var(--content-max);
@@ -569,8 +612,6 @@ main { width: 100%; }
 .action-section {
     padding: var(--s-6) var(--s-3);
     text-align: center;
-    background: var(--surface);
-    border-top: 1px solid var(--line);
 }
 .cta-btn {
     min-height: 44px;
