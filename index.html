@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAPHOS</title>
+    <meta name="description" content="주식회사 이에이포스">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="주식회사 이에이포스">
+    <meta property="og:description" content="주식회사 이에이포스">
+    <meta property="og:image" content="assets/meta.webp">
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 상단 비디오 섹션 -->
+        <section class="video-section">
+            <video autoplay muted loop playsinline class="hero-video desktop-video">
+                <source src="assets/video.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline class="hero-video mobile-video">
+                <source src="assets/video2.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <!-- 중단 패널 이미지 섹션 -->
+        <section class="panel-section">
+            <div class="panel-grid">
+                <div class="panel-item"><img src="assets/left.webp" alt=""></div>
+                <div class="panel-item"><img src="assets/front.webp" alt=""></div>
+                <div class="panel-item"><img src="assets/right.webp" alt=""></div>
+            </div>
+        </section>
+
+        <!-- 하단 Q&A 버튼 섹션 -->
+        <section class="action-section">
+            <button id="qa-button" class="click-btn">CLICK</button>
+            <!-- <p class="btn-caption">질문이 있으시면 위 버튼을 클릭해 주세요.</p> -->
+        </section>
+
+        <!-- 하단 푸터 이미지 섹션 -->
+        <footer class="footer-section">
+            <img src="assets/footer.webp" alt="" class="footer-logo">
+        </footer>
+
+        <!-- 모달 컨테이너 -->
+        <div id="qa-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <iframe id="qa-iframe" src="index.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
