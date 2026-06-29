@@ -220,27 +220,17 @@
                 </div>
             </section>
 
-            <!-- 연구데이터 분석 대시보드 (Chart.js, 데이터는 assets/dashboard-data.json) -->
-            <section class="dashboard-section" aria-labelledby="dashboard-heading" data-reveal>
-                <div class="dashboard-inner">
-                    <h2 id="dashboard-heading" class="section-title">연구데이터 분석 <span class="section-title-en">Data Insights</span></h2>
-                    <p class="company-lead">272 프로젝트 실험 데이터를 분석해 <strong>공정 제어 안정성·차수별 도징 최적화·실제 수율</strong>을 시각화합니다.</p>
-                    <p class="dashboard-note" id="dashboard-note" hidden></p>
-
-                    <div class="dashboard-grid">
-                        <figure class="chart-card chart-card--wide">
-                            <figcaption class="chart-title" id="chart-trend-title">공정 제어 프로파일</figcaption>
-                            <div class="chart-box"><canvas id="chart-trend" role="img" aria-label="시간별 도징량과 내부온도 공정 프로파일 선형 차트"></canvas></div>
-                        </figure>
-                        <figure class="chart-card">
-                            <figcaption class="chart-title" id="chart-composition-title">차수별 평균 도징량</figcaption>
-                            <div class="chart-box"><canvas id="chart-composition" role="img" aria-label="차수별 평균 펌프 도징량 막대 차트"></canvas></div>
-                        </figure>
-                        <figure class="chart-card">
-                            <figcaption class="chart-title" id="chart-solvent-title">차수별 실제 수율</figcaption>
-                            <div class="chart-box"><canvas id="chart-solvent" role="img" aria-label="차수별 실제 수율 막대 차트"></canvas></div>
-                        </figure>
-                    </div>
+            <!-- 데이터 기반 R&D 소개 패널 (상세 차트는 모달로) -->
+            <section class="rd-section" aria-labelledby="rd-heading" data-reveal>
+                <div class="rd-inner">
+                    <h2 id="rd-heading" class="section-title">데이터 기반 R&amp;D <span class="section-title-en">Data-Driven R&amp;D</span></h2>
+                    <p class="company-lead">이에이포스는 자체 실험실에서 공정을 수십 차례 반복·기록하며 정밀하게 개선합니다. 약 5개월간 20여 회차의 실험 데이터를 분석해 원료 투입량과 반응 온도 제어를 고도화했습니다.</p>
+                    <ul class="rd-stats">
+                        <li><strong>20+</strong><span>분석한 실험 회차</span></li>
+                        <li><strong>±2℃</strong><span>반응 온도 정밀 제어</span></li>
+                        <li><strong>67.8%</strong><span>달성 최고 수율</span></li>
+                    </ul>
+                    <button id="dash-button" class="cta-btn cta-btn--ghost" type="button" aria-haspopup="dialog">연구개발 데이터 살펴보기</button>
                 </div>
             </section>
 
@@ -263,6 +253,34 @@
                 <h2 id="modal-title" class="sr-only">문의 폼</h2>
                 <button class="close-btn" type="button" aria-label="문의 폼 닫기">&times;</button>
                 <iframe id="qa-iframe" title="문의 폼" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- 연구개발 데이터 모달 -->
+        <div id="dash-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dash-modal-title" hidden>
+            <div class="modal-content modal-content--panel">
+                <button class="close-btn" type="button" aria-label="데이터 창 닫기" data-close="dash">&times;</button>
+                <div class="dash-body">
+                    <h2 id="dash-modal-title" class="section-title">연구개발 데이터 <span class="section-title-en">Data Insights</span></h2>
+                    <p class="dashboard-lead">자체 실험 데이터를 분석해 공정 제어·투입량·수율을 정리했습니다. 아래 지표는 실제 실험 기록에서 추출한 값입니다.</p>
+                    <p class="dashboard-note" id="dashboard-note" hidden></p>
+
+                    <figure class="chart-card">
+                        <figcaption class="chart-title" id="chart-trend-title">공정 제어 안정성</figcaption>
+                        <div class="chart-box"><canvas id="chart-trend" role="img" aria-label="시간별 원료 투입량과 내부온도 공정 프로파일"></canvas></div>
+                        <p class="chart-caption" id="chart-trend-cap" hidden></p>
+                    </figure>
+                    <figure class="chart-card">
+                        <figcaption class="chart-title" id="chart-composition-title">실험 회차별 평균 투입량</figcaption>
+                        <div class="chart-box"><canvas id="chart-composition" role="img" aria-label="실험 회차별 평균 투입량 막대 차트"></canvas></div>
+                        <p class="chart-caption" id="chart-composition-cap" hidden></p>
+                    </figure>
+                    <figure class="chart-card">
+                        <figcaption class="chart-title" id="chart-solvent-title">실제 수율</figcaption>
+                        <div class="chart-box"><canvas id="chart-solvent" role="img" aria-label="실험 회차별 실제 수율 막대 차트"></canvas></div>
+                        <p class="chart-caption" id="chart-solvent-cap" hidden></p>
+                    </figure>
+                </div>
             </div>
         </div>
 
