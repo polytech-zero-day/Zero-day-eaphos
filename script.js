@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (rendered) return;
             rendered = true;
             try {
-                await loadScript('assets/chart.min.js');
+                if (typeof window.Chart === 'undefined') await loadScript('assets/chart.min.js');
                 const res = await fetch('assets/dashboard-data.json', { cache: 'no-cache' });
                 renderDashboard(await res.json());
             } catch (e) {

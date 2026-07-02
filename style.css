@@ -564,14 +564,6 @@ main { width: 100%; }
     text-align: center;
     text-wrap: pretty;
 }
-.dashboard-note {
-    margin: 0 auto var(--s-4);
-    max-width: 60ch;
-    font-size: var(--t-sm);
-    color: var(--ink-muted);
-    text-align: center;
-    text-wrap: pretty;
-}
 .chart-card {
     background: var(--bg);
     border: 1px solid var(--line);
